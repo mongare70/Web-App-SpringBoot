@@ -13,17 +13,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container-fluid bg">
+<div class="container-fluid bg">
 		<div class="row">
 			<div class="col-md-4 col-sm-4 col-xs-12"></div>
 			<div class="col-md-4 col-sm-4 col-xs-12"></div>
 				<!-- Form Start -->
-            <form class="form-container" method="post" action="/login" name="login_form" id="login_form" onsubmit="return validateForm()">
-                <br>
-                <button type="button" class="btn btn-dark btn-block" onClick="window.location.href='hallsOfficerLogin.jsp'">Login As Halls Officer</button>
-                <br>
-                <button type="button" class="btn btn-dark btn-block" onClick="window.location.href='custodianLogin.jsp'">Login As Custodian</button>
-                <h1>Student Login Form</h1>
+            <form class="form-container" method="post" action="/custodianLogin" name="custodian_login_form" id="custodian_login_form" onsubmit="return validateForm()">
+                <h1>Custodian Login Form</h1>
                   <div class="form-group">
                     <label for="uname">Username</label>
                     <input type="text" class="form-control" id="uname" name="uname" placeholder="Username">
@@ -33,7 +29,7 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                   </div>
                   <button type="submit" class="btn btn-success btn-block">Submit</button>
-                <p class="message">Not registered? <a href="/registration">Create an account</a></p>
+                <p class="message">Not registered? <a href="/custodianRegistration">Create an account</a></p>
             </form>
 				<!-- Form End-->
 		</div>
@@ -42,8 +38,8 @@
 	<script type="text/javascript">
 	 function validateForm()                                    
      { 
-         var uname = document.forms["login_form"]["uname"];               
-         var password = document.forms["login_form"]["password"];
+         var uname = document.forms["custodian_login_form"]["uname"];               
+         var password = document.forms["custodian_login_form"]["password"];
         
          if (uname.value == "")                                  
          { 
@@ -62,6 +58,5 @@
          return true; 
      }	
 	</script>
-
 </body>
 </html>

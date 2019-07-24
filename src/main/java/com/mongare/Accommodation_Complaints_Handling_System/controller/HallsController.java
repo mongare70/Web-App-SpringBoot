@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mongare.Accommodation_Complaints_Handling_System.dao.ServiceHalls;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Complaint;
+import com.mongare.Accommodation_Complaints_Handling_System.model.Custodian;
+import com.mongare.Accommodation_Complaints_Handling_System.model.HallsOfficer;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Student;
 
 @Controller
@@ -27,11 +29,35 @@ public class HallsController {
 		return "studentRegistration.jsp";
 	}
 	
+	@RequestMapping("/HallsOfficerRegistration")
+	public String hallsOfficerRegistration() {
+		return "hallsOfficerRegistration.jsp";
+	}
+	
+	@RequestMapping("/custodianRegistration")
+	public String custodianRegistration() {
+		return "custodianRegistration.jsp";
+	}
+	
 	@PostMapping("/register")
 	String addStudent(Student student) {
 		
 		service.save(student);
 		return "welcome.jsp";
+	}
+	
+	@PostMapping("/hallsOfficerRegister")
+	String addHallsOfficer(HallsOfficer hallsOfficer) {
+		
+		service.saveHallsOfficer(hallsOfficer);
+		return "hallsOfficerWelcome.jsp";
+	}
+	
+	@PostMapping("/custodianRegister")
+	String addCustodian(Custodian custodian) {
+		
+		service.saveCustodian(custodian);
+		return "custodianWelcome.jsp";
 	}
 	
 	@PostMapping("/login")
@@ -46,8 +72,36 @@ public class HallsController {
 		else {
 			return "studentLogin.jsp";
 		}
-		
 	}
+	
+	@PostMapping("/HallsOfficerLogin")
+	public String validateHallsOfficer(@RequestParam String uname, @RequestParam String password, Model model){	
+		
+		HallsOfficer hallsOfficer=service.getHallsOfficer(uname, password);
+		
+		if(hallsOfficer!=null) {
+			model.addAttribute("hallsOfficer", hallsOfficer);
+			return "hallsOfficerWelcome.jsp";
+		}
+		else {
+			return "hallsOfficerLogin.jsp";
+		}
+	}
+	
+	@PostMapping("/custodianLogin")
+	public String validateCustodian(@RequestParam String uname, @RequestParam String password, Model model){	
+		
+		Custodian custodian=service.getCustodian(uname, password);
+		
+		if(custodian!=null) {
+			model.addAttribute("custodian", custodian);
+			return "custodianWelcome.jsp";
+		}
+		else {
+			return "custodianLogin.jsp";
+		}
+	}
+	
 	@PostMapping("/welcome")
 	public String submitComplaint(@RequestParam String complaintTitle,
 			@RequestParam String complaintDescription,@RequestParam String fname,
