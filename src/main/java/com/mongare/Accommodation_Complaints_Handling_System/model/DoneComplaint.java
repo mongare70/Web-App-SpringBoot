@@ -1,6 +1,5 @@
 package com.mongare.Accommodation_Complaints_Handling_System.model;
 
-
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -12,28 +11,18 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name="Complaints")
+@Table(name="DoneComplaints")
 @EntityListeners(AuditingEntityListener.class)
-
-public class Complaint {
+public class DoneComplaint {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int cid;
-	
-	@NotBlank
-	private String complaintTitle;
-	
-	@NotBlank
-	private String complaintDescription;
+	private int dcid;
 	
 	@NotBlank
 	private String fname;
 	
 	@NotBlank
 	private String lname;
-	
-	@NotBlank
-	private String uname;
 	
 	@NotBlank
 	private String regNo;
@@ -47,28 +36,18 @@ public class Complaint {
 	@NotBlank
 	private String roomNumber;
 	
-	public int getCid() {
-		return cid;
+	@NotBlank
+	private String complaintTitle;
+	
+	@NotBlank
+	private String complaintDescription;
+
+	public int getDcid() {
+		return dcid;
 	}
 
-	public void setCid(int cid) {
-		this.cid = cid;
-	}
-
-	public String getComplaintTitle() {
-		return complaintTitle;
-	}
-
-	public void setComplaintTitle(String complaintTitle) {
-		this.complaintTitle = complaintTitle;
-	}
-
-	public String getComplaintDescription() {
-		return complaintDescription;
-	}
-
-	public void setComplaintDescription(String complaintDescription) {
-		this.complaintDescription = complaintDescription;
+	public void setDcid(int dcid) {
+		this.dcid = dcid;
 	}
 
 	public String getFname() {
@@ -85,14 +64,6 @@ public class Complaint {
 
 	public void setLname(String lname) {
 		this.lname = lname;
-	}
-
-	public String getUname() {
-		return uname;
-	}
-
-	public void setUname(String uname) {
-		this.uname = uname;
 	}
 
 	public String getRegNo() {
@@ -127,15 +98,28 @@ public class Complaint {
 		this.roomNumber = roomNumber;
 	}
 
+	public String getComplaintTitle() {
+		return complaintTitle;
+	}
+
+	public void setComplaintTitle(String complaintTitle) {
+		this.complaintTitle = complaintTitle;
+	}
+
+	public String getComplaintDescription() {
+		return complaintDescription;
+	}
+
+	public void setComplaintDescription(String complaintDescription) {
+		this.complaintDescription = complaintDescription;
+	}
+
 	@Override
 	public String toString() {
-		return "Complaint [cid=" + cid + ", complaintTitle=" + complaintTitle + ", complaintDescription="
-				+ complaintDescription + ", fname=" + fname + ", lname=" + lname + ", uname=" + uname + ", regNo="
-				+ regNo + ", hostel=" + hostel + ", block=" + block + ", roomNumber=" + roomNumber + "]";
+		return "DoneComplaint [dcid=" + dcid + ", fname=" + fname + ", lname=" + lname + ", regNo=" + regNo
+				+ ", hostel=" + hostel + ", block=" + block + ", roomNumber=" + roomNumber + ", complaintTitle="
+				+ complaintTitle + ", complaintDescription=" + complaintDescription + "]";
 	}
-	
-	
-	
 	
 	
 }

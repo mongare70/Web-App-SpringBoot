@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mongare.Accommodation_Complaints_Handling_System.dao.ServiceHalls;
+import com.mongare.Accommodation_Complaints_Handling_System.model.AcceptedComplaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Complaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Custodian;
+import com.mongare.Accommodation_Complaints_Handling_System.model.DoneComplaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.HallsOfficer;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Student;
 
@@ -126,5 +128,63 @@ public class HallsController {
 		model.addAttribute("message", message);
 		model.addAttribute("complaint", complaint);
 		return "welcome.jsp";
+	}
+	
+	@PostMapping("/acceptComplaint")
+	public String validate(@RequestParam String cid, @RequestParam String fname,
+			@RequestParam String lname,@RequestParam String regNo,
+			@RequestParam String hostel,@RequestParam String block,
+			@RequestParam String roomNumber, @RequestParam String complaintTitle, @RequestParam String complaintDescription, 
+			Model model) {
+		
+		AcceptedComplaint acceptedComplaint = new AcceptedComplaint();
+		acceptedComplaint.setFname(fname);
+		acceptedComplaint.setLname(lname);
+		acceptedComplaint.setRegNo(regNo);
+		acceptedComplaint.setHostel(hostel);
+		acceptedComplaint.setBlock(block);
+		acceptedComplaint.setRoomNumber(roomNumber);
+		acceptedComplaint.setComplaintTitle(complaintTitle);
+		acceptedComplaint.setComplaintDescription(complaintDescription);
+		
+		String message=service.saveAcceptedComplaint(acceptedComplaint);
+		
+		model.addAttribute("message",message);
+		model.addAttribute("acceptedComplaint", acceptedComplaint);
+		
+		service.deleteComplaint(Integer.valueOf(cid));
+		return "hallsOfficerWelcome.jsp";
+	}
+	
+	@PostMapping("/rejectComplaint")
+	public String delete(@RequestParam String cid) {
+		service.deleteComplaint(Integer.valueOf(cid));
+		return "hallsOfficerWelcome.jsp";
+	}
+	
+	@PostMapping("/doneComplaint")
+	public String doneComplaint(@RequestParam String acid, @RequestParam String fname,
+			@RequestParam String lname,@RequestParam String regNo,
+			@RequestParam String hostel,@RequestParam String block,
+			@RequestParam String roomNumber, @RequestParam String complaintTitle, @RequestParam String complaintDescription, 
+			Model model) {
+		
+		DoneComplaint doneComplaint = new DoneComplaint();
+		doneComplaint.setFname(fname);
+		doneComplaint.setLname(lname);
+		doneComplaint.setRegNo(regNo);
+		doneComplaint.setHostel(hostel);
+		doneComplaint.setBlock(block);
+		doneComplaint.setRoomNumber(roomNumber);
+		doneComplaint.setComplaintTitle(complaintTitle);
+		doneComplaint.setComplaintDescription(complaintDescription);
+		
+		String message=service.saveDoneComplaint(doneComplaint);
+		
+		model.addAttribute("message",message);
+		model.addAttribute("doneComplaint", doneComplaint);
+		
+		service.deleteAcceptedComplaint(Integer.valueOf(acid));
+		return "custodianWelcome.jsp";
 	}
 }
