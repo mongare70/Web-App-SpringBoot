@@ -19,6 +19,9 @@
 			<div class="col-md-2 col-sm-4 col-xs-12"></div>
 				<!-- Form Start -->
             <form class="form-container" method="post" action="/welcome" id="commentForm" name="commentForm" onsubmit="return formValidate()">
+                <br>
+                <button type="button" class="btn btn-dark btn-block" onClick="window.location.href='addressedComplaints.jsp'">List of Already Addressed Complaints</button>
+                <br>
                 <h1>Welcome ${student.fname}</h1>
                 <br>
                 <h1>Complaint Form</h1>

@@ -75,7 +75,7 @@
                 </div>
                   <button type="submit" class="btn btn-success btn-block">Submit</button>
                 <br>
-                <button type="button" class="btn btn-danger btn-block" onClick="window.location.href='hallsOfficerLogin.jsp'">Cancel</button>
+                <button type="button" class="btn btn-danger btn-block" onClick="window.location.href='custodianLogin.jsp'">Cancel</button>
             </form>
 				<!-- Form End-->
             <script>
