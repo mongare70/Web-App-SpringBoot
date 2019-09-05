@@ -13,6 +13,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<button type="button" class="btn btn-danger btn-block" onClick="window.location.href='studentLogin.jsp'">Log Out</button>
+ <br>
+
 <div class="container-fluid bg">
 		<div class="row">
 			<div class="col-md-2 col-sm-4 col-xs-12"></div>

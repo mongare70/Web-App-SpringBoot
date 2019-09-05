@@ -13,6 +13,7 @@ import com.mongare.Accommodation_Complaints_Handling_System.model.Complaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Custodian;
 import com.mongare.Accommodation_Complaints_Handling_System.model.DoneComplaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.HallsOfficer;
+import com.mongare.Accommodation_Complaints_Handling_System.model.RejectedComplaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Student;
 
 @Controller
@@ -157,7 +158,28 @@ public class HallsController {
 	}
 	
 	@PostMapping("/rejectComplaint")
-	public String delete(@RequestParam String cid) {
+	public String reject(@RequestParam String cid, @RequestParam String fname,
+			@RequestParam String lname,@RequestParam String regNo,
+			@RequestParam String hostel,@RequestParam String block,
+			@RequestParam String roomNumber, @RequestParam String complaintTitle, @RequestParam String complaintDescription, 
+			Model model) {
+		
+		RejectedComplaint rejectedComplaint = new RejectedComplaint();
+		rejectedComplaint.setFname(fname);
+		rejectedComplaint.setLname(lname);
+		rejectedComplaint.setRegNo(regNo);
+		rejectedComplaint.setHostel(hostel);
+		rejectedComplaint.setBlock(block);
+		rejectedComplaint.setRoomNumber(roomNumber);
+		rejectedComplaint.setComplaintTitle(complaintTitle);
+		rejectedComplaint.setComplaintDescription(complaintDescription);
+		
+		String message=service.saveRejectedComplaint(rejectedComplaint);
+		
+		model.addAttribute("message",message);
+		model.addAttribute("rejectedComplaint", rejectedComplaint);
+		
+		
 		service.deleteComplaint(Integer.valueOf(cid));
 		return "hallsOfficerWelcome.jsp";
 	}

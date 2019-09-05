@@ -170,5 +170,81 @@
         <div class="col-md-4 col-sm-4 col-xs-12"></div>
 	</div>
 	
+	<br>
+	<br>
+	
+	<div class="container-fluid bg">
+		<div class="row">
+			<div class="col-md-2 col-sm-4 col-xs-12"></div>
+            <div class="col-md-2 col-sm-4 col-xs-12"></div>
+                        
+            <%@page import="java.sql.DriverManager"%>
+			<%@page import="java.sql.ResultSet"%>
+			<%@page import="java.sql.Statement"%>
+			<%@page import="java.sql.Connection"%>
+			
+			<%
+			
+			try {
+			Class.forName(driverName);
+			} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			}
+			
+			%>
+			
+			<h2 align="center"><font><strong>Welcome here are the Rejected Complaints for:</strong></font></h2>
+			<table id="complaints" align="center" cellpadding="5" cellspacing="5" border="1">
+			<tr>
+			
+			</tr>
+			<tr>
+			<td><b>Rejected Complaint Id</b></td>
+			<td><b>First Name</b></td>
+			<td><b>Last Name</b></td>
+			<td><b>Registration Number</b></td>
+			<td><b>Hostel</b></td>
+			<td><b>Block</b></td>
+			<td><b>Room Number</b></td>
+			<td><b>Complaint Title</b></td>
+			<td><b>Complaint Description</b></td>
+			</tr>
+			
+			<%
+			try{ 
+			connection = DriverManager.getConnection(connectionUrl, userId, password);
+			statement=connection.createStatement();
+			String sql ="SELECT * FROM rejected_complaints";
+			
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()){
+			%>
+			<tr>
+			
+			<td><%out.println(resultSet.getString("rcid")); %></td>
+			<td><%out.println(resultSet.getString("fname")); %></td>
+		    <td><%out.println(resultSet.getString("lname")); %></td>
+		    <td><%out.println(resultSet.getString("reg_no")); %></td>
+		    <td><%out.println(resultSet.getString("hostel")); %></td>
+		    <td><%out.println(resultSet.getString("block")); %></td>
+		    <td><%out.println(resultSet.getString("room_number")); %></td>
+		    <td><%out.println(resultSet.getString("complaint_title")); %></td>
+		    <td><%out.println(resultSet.getString("complaint_description")); %></td>
+			
+			</tr>
+			
+			<% 
+			}
+			
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
+			%>
+			</table>
+			          
+		</div>
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+	</div>
+	
 </body>
 </html>

@@ -13,6 +13,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+ <button type="button" class="btn btn-danger btn-block" onClick="window.location.href='studentLogin.jsp'">Log Out</button>
+ <br>
+ 
 <div class="container-fluid bg">
 		<div class="row">
 			<div class="col-md-2 col-sm-4 col-xs-12"></div>
@@ -100,7 +103,16 @@
 		    <td>
 		    <form name="reject_complaint_form"  method="post" enctype="form-data" action="/rejectComplaint">
 		    
-		    <input type="hidden" name="cid" value="<%=resultSet.getString("cid")%>">
+		   <input type="hidden" id="cid" name="cid" value="<%=resultSet.getString("cid")%>">
+		    <input type="hidden" id="fname" name="fname" value="<%=resultSet.getString("fname")%>">
+            <input type="hidden" id="lname" name="lname" value="<%=resultSet.getString("lname")%>">
+            <input type="hidden" id="regNo" name="regNo" value="<%=resultSet.getString("reg_no")%>">
+            <input type="hidden" id="hostel" name="hostel" value="<%=resultSet.getString("hostel")%>">
+            <input type="hidden" id="block" name="block" value="<%=resultSet.getString("block")%>">
+            <input type="hidden" id="roomNumber" name="roomNumber" value="<%=resultSet.getString("room_number")%>">
+            <input type="hidden" id="complaintTitle" name="complaintTitle" value="<%=resultSet.getString("complaint_title")%>">
+            <input type="hidden" id="complaintDescription" name="complaintDescription" value="<%=resultSet.getString("complaint_description")%>">
+            
 		    <button type="submit" class="btn btn-danger">Reject</button>
 		    
 		    </form>

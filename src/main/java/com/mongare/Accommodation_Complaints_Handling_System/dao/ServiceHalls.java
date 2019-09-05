@@ -8,12 +8,14 @@ import com.mongare.Accommodation_Complaints_Handling_System.model.Complaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Custodian;
 import com.mongare.Accommodation_Complaints_Handling_System.model.DoneComplaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.HallsOfficer;
+import com.mongare.Accommodation_Complaints_Handling_System.model.RejectedComplaint;
 import com.mongare.Accommodation_Complaints_Handling_System.model.Student;
 import com.mongare.Accommodation_Complaints_Handling_System.repository.AcceptedComplaintRepository;
 import com.mongare.Accommodation_Complaints_Handling_System.repository.ComplaintRepository;
 import com.mongare.Accommodation_Complaints_Handling_System.repository.CustodianRepository;
 import com.mongare.Accommodation_Complaints_Handling_System.repository.DoneComplaintRepository;
 import com.mongare.Accommodation_Complaints_Handling_System.repository.HallsOfficerRepository;
+import com.mongare.Accommodation_Complaints_Handling_System.repository.RejectedComplaintRepository;
 import com.mongare.Accommodation_Complaints_Handling_System.repository.StudentRepository;
 
 @Service
@@ -36,6 +38,9 @@ public class ServiceHalls {
 	
 	@Autowired
 	DoneComplaintRepository dcrepo;
+	
+	@Autowired
+	RejectedComplaintRepository rcrepo;
 	
 	public void save(Student student) {
 	 	srepo.save(student);
@@ -82,6 +87,18 @@ public class ServiceHalls {
 		}
 		else {
 		message="Failed to accept complaint";
+		}
+		return message;
+	}
+	
+	public String saveRejectedComplaint(RejectedComplaint rejectedComplaint) {
+		String message="";
+		rcrepo.save(rejectedComplaint);
+		if(rcrepo.save(rejectedComplaint)!=null) {
+		message="Rejected Successfully";
+		}
+		else {
+		message="Failed to reject complaint";
 		}
 		return message;
 	}
